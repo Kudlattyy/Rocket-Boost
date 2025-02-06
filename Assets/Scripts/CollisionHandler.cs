@@ -5,10 +5,12 @@ public class CollisionHandler : MonoBehaviour
 
     [SerializeField] float delay = 2f;
 
-    [SerializeField] AudioClip Victory;
-    [SerializeField] AudioClip Defeat;
-    
+    [SerializeField] AudioClip VictorySFX;
+    [SerializeField] AudioClip DefeatSFX;
+    [SerializeField] ParticleSystem VictoryParticles;
+    [SerializeField] ParticleSystem DefeatParticles;
     AudioSource audioSource;
+
 
     bool isControllable = true;
  
@@ -45,7 +47,8 @@ public class CollisionHandler : MonoBehaviour
     void Crash(){
         isControllable = false;
         audioSource.Stop();
-        audioSource.PlayOneShot(Defeat);
+        audioSource.PlayOneShot(DefeatSFX);
+        DefeatParticles.Play();
         GetComponent<Movement>().enabled = false;
         Invoke("ReloadLevel", delay);
     }
@@ -64,7 +67,8 @@ public class CollisionHandler : MonoBehaviour
     void LoadingNextLevel(){
         isControllable = false;
         audioSource.Stop();
-        audioSource.PlayOneShot(Victory);
+        audioSource.PlayOneShot(VictorySFX);
+        VictoryParticles.Play();
         GetComponent<Movement>().enabled = false;
         Invoke("NextLevel", delay);
     }
