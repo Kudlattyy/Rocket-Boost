@@ -4,6 +4,15 @@ public class CollisionHandler : MonoBehaviour
 {
 
     [SerializeField] float delay = 2f;
+
+    [SerializeField] AudioClip Victory;
+    [SerializeField] AudioClip Defeat;
+    
+    AudioSource audioSource;
+ 
+    void Start(){
+        audioSource = GetComponent<AudioSource>();
+    }
     private void OnCollisionEnter(Collision other) {
         switch(other.gameObject.tag){
             case "Friendly":
@@ -23,15 +32,18 @@ public class CollisionHandler : MonoBehaviour
 
  
     void ReloadLevel(){
+        
         int activeLevel = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(activeLevel);
     }
 
     void Crash(){
+        audioSource.PlayOneShot(Defeat);
         GetComponent<Movement>().enabled = false;
         Invoke("ReloadLevel", delay);
     }
     void NextLevel(){
+        
         int activeLevel = SceneManager.GetActiveScene().buildIndex;
         int nextLevel = activeLevel + 1;
 
@@ -43,6 +55,7 @@ public class CollisionHandler : MonoBehaviour
     }
 
     void LoadingNextLevel(){
+        audioSource.PlayOneShot(Victory);
         GetComponent<Movement>().enabled = false;
         Invoke("NextLevel", delay);
     }
