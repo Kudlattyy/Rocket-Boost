@@ -9,11 +9,16 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] AudioClip Defeat;
     
     AudioSource audioSource;
+
+    bool isControllable = true;
  
     void Start(){
         audioSource = GetComponent<AudioSource>();
     }
+
+    
     private void OnCollisionEnter(Collision other) {
+        if(!isControllable) {return;}
         switch(other.gameObject.tag){
             case "Friendly":
                 Debug.Log("Jesteś na lini startu");
@@ -38,6 +43,8 @@ public class CollisionHandler : MonoBehaviour
     }
 
     void Crash(){
+        isControllable = false;
+        audioSource.Stop();
         audioSource.PlayOneShot(Defeat);
         GetComponent<Movement>().enabled = false;
         Invoke("ReloadLevel", delay);
@@ -55,6 +62,8 @@ public class CollisionHandler : MonoBehaviour
     }
 
     void LoadingNextLevel(){
+        isControllable = false;
+        audioSource.Stop();
         audioSource.PlayOneShot(Victory);
         GetComponent<Movement>().enabled = false;
         Invoke("NextLevel", delay);
