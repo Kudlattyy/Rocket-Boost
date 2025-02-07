@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 public class CollisionHandler : MonoBehaviour
 {
@@ -13,23 +14,26 @@ public class CollisionHandler : MonoBehaviour
 
 
     bool isControllable = true;
+    bool isCollidable = true;
  
     void Start(){
         audioSource = GetComponent<AudioSource>();
     }
 
+    private void Update() {
+        RespondToDebugKeys();
+    }
+
     
     private void OnCollisionEnter(Collision other) {
-        if(!isControllable) {return;}
+        if(!isControllable || !isCollidable) {return;}
         switch(other.gameObject.tag){
             case "Friendly":
-                Debug.Log("Jesteś na lini startu");
                 break;
             case "Finish":
                 LoadingNextLevel();
                 break;
             case "Fuel":
-                Debug.Log("Zebrałeś paliwko");
                 break;
             default:
                 Crash();
@@ -72,5 +76,15 @@ public class CollisionHandler : MonoBehaviour
         GetComponent<Movement>().enabled = false;
         Invoke("NextLevel", delay);
     }
+
+    void RespondToDebugKeys(){
+        if(Keyboard.current.lKey.wasPressedThisFrame){
+            NextLevel();
+        }
+        else if(Keyboard.current.cKey.wasPressedThisFrame){
+            isCollidable = !isCollidable;
+        }
+    }
+
 
 }

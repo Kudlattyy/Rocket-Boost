@@ -207,7 +207,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: -0.18817756, y: -0.005308949, z: 0.00101079, w: -0.9821202}
-  m_LocalPosition: {x: -7.7616744, y: 6.42928, z: -9.276111}
+  m_LocalPosition: {x: -9.722217, y: 6.6056256, z: -9.184752}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -710,13 +710,13 @@ MonoBehaviour:
   CameraDistance: 10
   DeadZoneDepth: 0
   Composition:
-    ScreenPosition: {x: -0.13199362, y: 0.009589054}
+    ScreenPosition: {x: -0.023601778, y: 0.026027419}
     DeadZone:
       Enabled: 1
       Size: {x: 0.18951051, y: 0.2}
     HardLimits:
       Enabled: 1
-      Size: {x: 0.30174622, y: 0.60547936}
+      Size: {x: 0.22831942, y: 0.36438334}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
   TargetOffset: {x: 0, y: 0, z: 0}
@@ -778,7 +778,7 @@ Transform:
   m_GameObject: {fileID: 2034893063}
   serializedVersion: 2
   m_LocalRotation: {x: -0.18817756, y: -0.005308949, z: 0.00101079, w: -0.9821202}
-  m_LocalPosition: {x: -7.7616744, y: 6.42928, z: -9.276111}
+  m_LocalPosition: {x: -9.722217, y: 6.6056256, z: -9.184752}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
